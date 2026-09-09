@@ -4,6 +4,7 @@ if [ -f .env ]; then
 	export $(grep -v '^#' .env | xargs)
 fi
 PSQL="psql -h localhost -p 5432 -U postgres -d students -X --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE TABLE students, majors_courses, courses, majors RESTART IDENTITY;")
 cat courses.csv | while IFS="," read MAJOR COURSE
 do
 	if [[ $MAJOR != major ]]
