@@ -3,7 +3,7 @@
 if [ -f .env ]; then
 	export $(grep -v '^#' .env | xargs)
 fi
-PSQL="psql -h localhost -p 5432 -U postgres -d students -X --no-align --tuples-only -c"
+PSQL="psql -h localhost -p 5432 -U postgres -d bikes -X --tuples-only -c"
 
 echo -e "\n~~~~~ Bike Rental Shop ~~~~~\n"
 
@@ -37,10 +37,10 @@ RENT_MENU() {
   else
     # display available bikes
     echo -e "\nHere are the bikes we have available:"
-    echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
-    do
-      echo "$BIKE_ID) $SIZE\" $TYPE Bike"
-    done
+    echo "$AVAILABLE_BIKES" | sed 's/\r//g' | while read BIKE_ID BAR TYPE BAR SIZE
+  do
+    echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+  done
 
     # ask for bike to rent
     echo -e "\nWhich one would you like to rent?"
