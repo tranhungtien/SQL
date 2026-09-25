@@ -5,3 +5,8 @@ if [ -f .env ]; then
 fi
 
 PSQL="psql -h localhost -p 5432 -U postgres -d bikes -X --tuples-only -c"
+
+if [[ ! $1 ]] 
+then
+	echo "Please provide an element as an argument."
+fi
