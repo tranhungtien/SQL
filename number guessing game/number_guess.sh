@@ -39,14 +39,8 @@ do
 	if (( $SECRET_NUMBER > $USER_GUESS ))
   	then
     		echo "It's higher than that, guess again:"
-  	elif (( $SECRET_NUMBER < $USER_GUESS ))
-  	then 
+  	else
     		echo "It's lower than that, guess again:"
-  	else 
-    		#echo "$NUMBER_OF_GUESS"
-    		INSERT_GAME_INFO=$($PSQL "INSERT INTO games(user_id, moves) VALUES($GET_USER_ID, $NUMBER_OF_GUESSES);")
-    		echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
-    		break
   	fi
   	read USER_GUESS
   	((NUMBER_OF_GUESSES++))
