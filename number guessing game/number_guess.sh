@@ -24,3 +24,16 @@ else
   	#echo "$TOTAL_GAMES $BEST_GAME"
   	echo "Welcome back, $USER_NAME! You have played $TOTAL_GAMES games, and your best game took $BEST_GAME guesses."
 fi
+
+echo "Guess the secret number between 1 and 1000:"
+read USER_GUESS
+
+NUMBER_OF_GUESSES=1
+while (( $USER_GUESS != $SECRET_NUMBER ))
+do
+  	while [[ ! $USER_GUESS =~ ^[0-9]+$ ]]
+  	do
+    		echo "That is not an integer, guess again:"
+    		read USER_GUESS
+  	done
+done
