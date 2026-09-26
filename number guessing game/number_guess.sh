@@ -51,3 +51,6 @@ do
   	read USER_GUESS
   	((NUMBER_OF_GUESSES++))
 done
+
+INSERT_GAME_INFO=$($PSQL "INSERT INTO games(user_id, moves) VALUES($GET_USER_ID, $NUMBER_OF_GUESSES);")
+echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
